@@ -31,9 +31,9 @@
           <br>
           <span>
             <form>
-              <input type="text" name="todoEntryTextBox" id="todoEntryName">
+              <input type="text" name="todoEntryTextBox" id="todoEntryName" onkeyup="submitButtonState()">
             </form>
-            <button onclick="newItem()" class = 'submitButton'>Create New Task</button>
+            <button id="submitItemButton" onclick="newItem()" class = 'submitButton' disabled>Create New Task</button>
           </span>
       </div>
     </div>
