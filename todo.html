@@ -11,17 +11,23 @@
 
   <body>
     <div class="container">
+
       <div class="row row-centered">
-        <!-- <div class="col-xs-6"> -->
           <h1>Todo Today<h1>
             <p>Enter your tasks for today</p>
             <br>
-        <!-- </div> -->
       </div>
+
       <div class="row row-centered">
-        <!-- <div class="col-xs-6"> -->
-          <table id='todoList' class="todoList">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
+          <table id='todoList' class="todoListTable">
           </table>
+        </div>
+        <div class="col-xs-1"></div>
+      </div>
+
+      <div class="row row-centered">
           <br>
           <span>
             <form>
@@ -29,7 +35,6 @@
             </form>
             <button onclick="newItem()" class = 'submitButton'>Create New Task</button>
           </span>
-        <!-- </div> -->
       </div>
     </div>
   </body>

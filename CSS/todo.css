@@ -41,4 +41,14 @@ form {
 
 .td {
   text-align: center;
+  vertical-align:middle;
+}
+
+#todoList {
+  border-spacing:10px;
+  border-collapse: separate;
+}
+
+input[type=checkbox] {
+  margin-bottom: 4px;
 }

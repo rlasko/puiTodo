@@ -12,15 +12,21 @@ var newItem = function() {
   var tableLength = table.rows.length;
 
   var newEntry = table.insertRow(tableLength);
-  newEntry.id = "entry_".concat(items.toString())
-  var entryNameCell = newEntry.insertCell(0);
-  entryNameCell.innerHTML = value;
 
   var checkbox = document.createElement("INPUT");
   checkbox.setAttribute("id", "checkbox_".concat(items.toString()));
   checkbox.setAttribute("type", "checkbox");
-  var checkBoxCell = newEntry.insertCell(1);
+  checkbox.class = "checkbox";
+  var checkBoxCell = newEntry.insertCell(0);
+  checkBoxCell.class = "checkboxCell"
   checkBoxCell.appendChild(checkbox);
+
+
+  newEntry.id = "entry_".concat(items.toString())
+  var entryNameCell = newEntry.insertCell(1);
+  entryNameCell.innerHTML = value;
+
+
 
   var deleteButton = document.createElement("BUTTON")
   deleteButton.innerHTML = "x";
@@ -29,7 +35,7 @@ var newItem = function() {
   var deleteCell = newEntry.insertCell(2);
   deleteCell.appendChild(deleteButton);
 
-  
+
 
   items += 1
 }
