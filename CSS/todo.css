@@ -25,10 +25,19 @@ form {
       box-sizing: border-box;
       padding: 2px 6px 3px;
       border-width: 2px;
-      border-style: outset;
+      border-style: groove;
       border-color: buttonface;
       border-image: initial;
       border-radius: 5px;
+      cursor: pointer;
+}
+
+.submitButton:disabled {
+  background-color: #D3D3D3;
+  color: gray;
+  border-style: groove;
+  border-color: #C0C0C0;
+  cursor: default;
 }
 
 #todoEntryName {
