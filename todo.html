@@ -1,26 +1,36 @@
 <!-- Rae Lasko Section A -->
 <html lang = "eng">
   <head>
-    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PUI Assignment 3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/todo.css">
     <script src="Javascript/todo.js"></script>
   </head>
 
   <body>
-    <h1>Todo Today<h1>
-      <p>Enter your tasks for today</p>
-      <br>
-      <table id='todoList' class="heeeyyy">
-
-      </table>
-      <br>
-      <span>
-        <form>
-          <input type="text" name="todoEntryTextBox" id="todoEntryName">
-        </form>
-        <button onclick="newItem()">Create New Task</button>
-    </span>
-
+    <div class="container">
+      <div class="row row-centered">
+        <!-- <div class="col-xs-6"> -->
+          <h1>Todo Today<h1>
+            <p>Enter your tasks for today</p>
+            <br>
+        <!-- </div> -->
+      </div>
+      <div class="row row-centered">
+        <!-- <div class="col-xs-6"> -->
+          <table id='todoList' class="todoList">
+          </table>
+          <br>
+          <span>
+            <form>
+              <input type="text" name="todoEntryTextBox" id="todoEntryName">
+            </form>
+            <button onclick="newItem()" class = 'submitButton'>Create New Task</button>
+          </span>
+        <!-- </div> -->
+      </div>
+    </div>
   </body>
 </html>
