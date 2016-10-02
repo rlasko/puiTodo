@@ -35,12 +35,14 @@ var newItem = function() {
 // create deleteButton and cell and add to row
   var deleteButton = document.createElement("BUTTON")
   deleteButton.innerHTML = "x";
+  deleteButton.setAttribute("class","deleteButton");
   deleteButton.id = items.toString();
 // code for deleting todo item
   deleteButton.onclick = function () {removeEntry(parseInt(deleteButton.id))};
   var deleteCell = newEntry.insertCell(2);
   deleteCell.appendChild(deleteButton);
 
+  listControllerButtonsStates();
   items += 1
 }
 
@@ -49,6 +51,7 @@ var removeEntry = function(buttonNum) {
   var rowId = "entry_".concat(buttonNum);
   var row = document.getElementById(rowId);
   row.parentNode.removeChild(row);
+  listControllerButtonsStates();
 }
 
 // if textbox is empty then disable submitButton
@@ -60,4 +63,36 @@ var submitButtonState = function() {
   } else {
     document.getElementById('submitItemButton').disabled = false;
   }
+}
+
+// set enable/disable state of check all and delete all
+var listControllerButtonsStates = function() {
+  var table = document.getElementById('todoList');
+  if (table.rows.length > 0) {
+    document.getElementById('deleteAllButton').disabled = false;
+    document.getElementById('checkAllButton').disabled = false;
+  } else {
+    document.getElementById('deleteAllButton').disabled = true;
+    document.getElementById('checkAllButton').disabled = true;
+  }
+}
+
+// check all list items
+var checkAll = function() {
+  var table = document.getElementById('todoList');
+  var tableLength = table.rows.length;
+  for (var i = 0; i < tableLength; i ++) {
+    table.rows[i].cells[0].childNodes[0].checked = true;
+  }
+}
+
+// delete all items
+var deleteAll = function() {
+  var table = document.getElementById('todoList');
+  var tableLength = table.rows.length;
+  for (var i = 0; i < tableLength; i ++) {
+    var row = table.rows[0];
+    table.rows[0].parentNode.removeChild(row);
+  }
+  listControllerButtonsStates(); // update state
 }

@@ -16,7 +16,7 @@ form {
   margin-bottom: 5px;
 }
 
-.submitButton {
+.entryButton {
       align-items: flex-start;
       text-align: center;
       cursor: default;
@@ -32,7 +32,7 @@ form {
       cursor: pointer;
 }
 
-.submitButton:disabled {
+.entryButton:disabled {
   background-color: #D3D3D3;
   color: gray;
   border-style: groove;
@@ -61,4 +61,12 @@ form {
 
 input[type=checkbox] {
   margin-bottom: 4px;
+}
+
+#deleteAllButton {
+  margin-top: 10px;
+}
+
+#checkAllButton {
+  margin-top: 10px;
 }

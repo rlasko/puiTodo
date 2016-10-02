@@ -33,8 +33,17 @@
             <form>
               <input type="text" name="todoEntryTextBox" id="todoEntryName" onkeyup="submitButtonState()">
             </form>
-            <button id="submitItemButton" onclick="newItem()" class = 'submitButton' disabled>Create New Task</button>
+            <button id="submitItemButton" onclick="newItem()" class = 'entryButton' disabled>Create New Task</button>
           </span>
+      </div>
+
+      <div class="row row-centered">
+        <div class="col-xs-6">
+          <button id="checkAllButton" onclick="checkAll()" class="entryButton" disabled>Check All</button>
+        </div>
+        <div class="col-xs-6">
+          <button id="deleteAllButton" onclick="deleteAll()" class="entryButton" disabled>Delete All</button>
+        </div>
       </div>
     </div>
   </body>
