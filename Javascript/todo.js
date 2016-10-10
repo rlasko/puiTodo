@@ -41,6 +41,7 @@ var newItem = function() {
   deleteButton.onclick = function () {removeEntry(parseInt(deleteButton.id))};
   var deleteCell = newEntry.insertCell(2);
   deleteCell.appendChild(deleteButton);
+  checkbox.onclick = setTimeout(function(){removeEntry(parseInt(deleteButton.id))}, 1000);
 
   listControllerButtonsStates();
   items += 1
