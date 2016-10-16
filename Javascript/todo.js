@@ -4,6 +4,7 @@ var items = 0;
 var newItem = function() {
   var table = document.getElementById('todoList');
   var txtBox =  document.getElementById('todoEntryName');
+  console.log(txtBox);
   var value = txtBox.value;
 
   // just in case the value is nothing, set a default (this shouldn't be possible)
@@ -12,7 +13,7 @@ var newItem = function() {
   }
   // reset the value and set button state
   txtBox.value = "";
-  submitButtonState();
+  // submitButtonState();
 
   // add new row to the bottom of the table
   var tableLength = table.rows.length;
@@ -22,15 +23,27 @@ var newItem = function() {
   var checkbox = document.createElement("INPUT");
   checkbox.setAttribute("id", "checkbox_".concat(items.toString()));
   checkbox.setAttribute("type", "checkbox");
+  // checkbox.setAttribute("checked","not checked")
   checkbox.class = "checkbox";
   var checkBoxCell = newEntry.insertCell(0);
   checkBoxCell.class = "checkboxCell";
-  checkBoxCell.appendChild(checkbox);
+  var inputField = document.createElement("div");
+  inputField.setAttribute("class","input-field col s12");
+  inputField.appendChild(checkbox);
+  checkBoxCell.appendChild(inputField);
+  var label = document.createElement("LABEL");
+  label.setAttribute("for",checkbox.id);
+  inputField.appendChild(label);
 
 // create todo name cell and add to row
-  newEntry.id = "entry_".concat(items.toString());
-  var entryNameCell = newEntry.insertCell(1);
-  entryNameCell.innerHTML = value;
+  // newEntry.id = "entry_".concat(items.toString());
+  // var entryNameCell = newEntry.insertCell(1);
+  // entryNameCell.innerHTML = value;
+  // var label = document.createElement("LABEL");
+  // label.setAttribute("for",checkbox.id);
+  // label.innerHTML = "ehllo";
+  label.innerHTML = value;
+
 
 // create deleteButton and cell and add to row
   var deleteButton = document.createElement("BUTTON")
