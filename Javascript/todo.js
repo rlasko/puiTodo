@@ -24,11 +24,11 @@ var newItem = function() {
   checkbox.setAttribute("type", "checkbox");
   checkbox.class = "checkbox";
   var checkBoxCell = newEntry.insertCell(0);
-  checkBoxCell.class = "checkboxCell"
+  checkBoxCell.class = "checkboxCell";
   checkBoxCell.appendChild(checkbox);
 
 // create todo name cell and add to row
-  newEntry.id = "entry_".concat(items.toString())
+  newEntry.id = "entry_".concat(items.toString());
   var entryNameCell = newEntry.insertCell(1);
   entryNameCell.innerHTML = value;
 
@@ -41,7 +41,6 @@ var newItem = function() {
   deleteButton.onclick = function () {removeEntry(parseInt(deleteButton.id))};
   var deleteCell = newEntry.insertCell(2);
   deleteCell.appendChild(deleteButton);
-  checkbox.onclick = setTimeout(function(){removeEntry(parseInt(deleteButton.id))}, 1000);
 
   listControllerButtonsStates();
   items += 1
