@@ -4,7 +4,6 @@ var items = 0;
 var newItem = function() {
   var table = document.getElementById('todoList');
   var txtBox =  document.getElementById('todoEntryName');
-  console.log(txtBox);
   var value = txtBox.value;
 
   // just in case the value is nothing, set a default (this shouldn't be possible)
@@ -18,6 +17,7 @@ var newItem = function() {
   // add new row to the bottom of the table
   var tableLength = table.rows.length;
   var newEntry = table.insertRow(tableLength);
+  newEntry.id = "entry_".concat(items.toString());
 
 // create checkbox cell and add to row
   var checkbox = document.createElement("INPUT");
@@ -48,11 +48,11 @@ var newItem = function() {
 // create deleteButton and cell and add to row
   var deleteButton = document.createElement("BUTTON")
   deleteButton.innerHTML = "x";
-  deleteButton.setAttribute("class","deleteButton");
+  deleteButton.setAttribute("class","deleteButton waves-effect waves-light btn");
   deleteButton.id = items.toString();
 // code for deleting todo item
   deleteButton.onclick = function () {removeEntry(parseInt(deleteButton.id))};
-  var deleteCell = newEntry.insertCell(2);
+  var deleteCell = newEntry.insertCell(1);
   deleteCell.appendChild(deleteButton);
 
   listControllerButtonsStates();
@@ -92,10 +92,11 @@ var listControllerButtonsStates = function() {
 
 // check all list items
 var checkAll = function() {
+  console.log("hello");
   var table = document.getElementById('todoList');
   var tableLength = table.rows.length;
   for (var i = 0; i < tableLength; i ++) {
-    table.rows[i].cells[0].childNodes[0].checked = true;
+    table.rows[i].cells[0].childNodes[0].childNodes[0].setAttribute("checked","checked");
   }
 }
 

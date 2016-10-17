@@ -13,31 +13,32 @@
   <body>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <div class="container">
-      <div class="row center-align" id="header">
-          <h1>Todo Today</h1>
-            <p>Enter your tasks for today</p>
+    <div class="row center-align card-panel teal lighten-2" id="header">
+      <div class="col s12">
+        <h1 class="white-text">Todo Today</h1>
       </div>
+    </div>
+    <div class="container">
       <div class="row">
         <div class="col s3"></div>
         <div class="col s6">
-          <table id="todoList" class="todoListTable">
+          <table id="todoList" class="todoListTable valign-wrapper">
           </table>
         </div>
         <div class="col s1"></div>
       </div>
 
       <div class="row valign-wrapper">
-         <form class="col s8">
+         <form class="col s9">
             <div class="input-field col s12">
               <i class="material-icons prefix">mode_edit</i>
               <input id="todoEntryName" type="text" class="validate">
               <label for="todoEntryName">Task</label>
             </div>
         </form>
-        <div class="col s4">
+        <div class="col s3">
           <a class="btn-floating btn waves-effect waves-light" type="submit" onclick="newItem()">
-            <i class="material-icons">add</i>
+            <i class="material-icons" id="heyhey">add</i>
           </a>
         </div>
       </div>
