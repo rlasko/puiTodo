@@ -22,11 +22,22 @@ form {
   height: 22px;
   line-height: 22px;
   padding: 0.1 0.4rem;
+  font-size: 8px;
+}
+
+#edit {
+  height: 28px;
+  line-height: 28px;
+  padding: 0.8 0.8rem;
   font-size: 12px;
 }
 
 .checkboxCell {
   width: 150px;
+}
+
+#more {
+  font-size: 30px;
 }
 
 #todoList {
@@ -47,4 +58,36 @@ td {
 table tr {
     padding: 0;
     align-items: baseline;
+}
+
+#main {
+  overflow:auto;
+	padding-bottom: 50px;
+}
+
+.footer {
+  position: relative;
+	margin-top: -50px;
+	height: 50px;
+	clear:both;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#editMenu {
+  display: none;
+}
+
+.editButton {
+  height: 28px;
+  width: 85px;
+  line-height: 28px;
+  padding: 0.8 0.8rem;
+  font-size: 10px;
+}
+
+.edit {
+  align: right;
 }

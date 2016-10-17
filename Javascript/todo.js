@@ -48,7 +48,8 @@ var newItem = function() {
 // create deleteButton and cell and add to row
   var deleteButton = document.createElement("BUTTON")
   deleteButton.innerHTML = "x";
-  deleteButton.setAttribute("class","deleteButton waves-effect waves-light btn");
+  deleteButton.style.display = "none";
+  deleteButton.setAttribute("class","deleteButton waves-effect waves-light btn-flat");
   deleteButton.id = items.toString();
 // code for deleting todo item
   deleteButton.onclick = function () {removeEntry(parseInt(deleteButton.id))};
@@ -109,4 +110,24 @@ var deleteAll = function() {
     table.rows[0].parentNode.removeChild(row);
   }
   listControllerButtonsStates(); // update state
+}
+
+var showEditMenu = function() {
+  document.getElementById('footerButton').style.display = "none";
+  document.getElementById('editMenu').style.display = "block";
+
+  var deleteButtons = document.getElementsByClassName('deleteButton');
+  for (var i = 0; i < deleteButtons.length; i ++) {
+    deleteButtons[i].style.display = 'block';
+  }
+}
+
+var hideEditMenu = function() {
+  document.getElementById('footerButton').style.display = "block";
+  document.getElementById('editMenu').style.display = "none";
+
+  var deleteButtons = document.getElementsByClassName('deleteButton');
+  for (var i = 0; i < deleteButtons.length; i ++) {
+    deleteButtons[i].style.display = 'none';
+  }
 }
