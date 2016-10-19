@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="CSS/todo.css">
     <script src="Javascript/todo.js"></script>
   </head>
-
   <body>
     <div id="wrap">
     <div id="main">
@@ -20,8 +19,27 @@
         <h1 class="white-text">Start Working</h1>
       </div>
     </div>
+    <div class="row center-align footer" id="footerButton">
+      <div class="col s4 offset-s8">
+        <button id="edit" class="waves-effect waves-light btn-flat teal-text" onclick="showEditMenu()">Edit</button>
+      </div>
+    </div>
+    <div class="row center-align footer valign-wrapper" id="editMenu">
+      <div class="col s12 l4 offset-l7 valign-wrapper">
+        <div class="col s4">
+          <button id="checkAllButton" onclick="checkAll()" class="editButton waves-effect waves-light btn" disabled>Check All</button>
+        </div>
+        <div class="col s4">
+          <button id="deleteAllButton" onclick="deleteAll()" class="editButton waves-effect waves-light btn" disabled>Delete All</button>
+        </div>
+        <div class="col s4">
+            <button id="edit" class="waves-effect waves-light btn-flat teal-text" onclick="hideEditMenu()">Edit</button>
+        </div>
+    </div>
+    </div>
+
     <div class="container">
-      <div class="row">
+      <div class="row" id="tableDiv">
         <div class="col s3"></div>
         <div class="col s6">
           <table id="todoList" class="todoListTable valign-wrapper">
@@ -29,8 +47,8 @@
         </div>
         <div class="col s1"></div>
       </div>
-      <br>
       <div class="row valign-wrapper">
+        <div class="col s12 l5 valign-wrapper">
          <form class="col s9">
             <div class="input-field col s12">
               <i class="material-icons prefix">mode_edit</i>
@@ -39,9 +57,10 @@
             </div>
         </form>
         <div class="col s3">
-          <a class="btn-floating btn waves-effect waves-light" type="submit" onclick="newItem()">
-            <i class="material-icons">add</i>
+          <a class="btn-floating btn waves-effect waves-light" id="submitItemButton" type="submit" onclick="newItem()">
+            <i class="material-icons">done</i>
           </a>
+        </div>
         </div>
       </div>
 
@@ -50,22 +69,4 @@
   </div>
 </div>
   </body>
-  <div class="row center-align footer" id="footerButton">
-    <div class="col s4 offset-s8">
-      <button id="edit" class="waves-effect waves-light btn-flat teal-text" onclick="showEditMenu()">Edit</button>
-  </div>
-  </div>
-  <div class="row center-align footer" id="editMenu">
-    <div class="col s4">
-      <button id="checkAllButton" onclick="checkAll()" class="editButton waves-effect waves-light btn" disabled>Check All</button>
-    </div>
-    <div class="col s4">
-      <button id="deleteAllButton" onclick="deleteAll()" class="editButton waves-effect waves-light btn" disabled>Delete All</button>
-    </div>
-    <div class="col s4">
-      <a class="btn-floating waves-effect waves-light" onclick="hideEditMenu()">
-        <i class="material-icons">check</i>
-      </a>
-    </div>
-  </div>
 </html>

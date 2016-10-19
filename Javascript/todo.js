@@ -2,6 +2,7 @@ var items = 0;
 
 // create new todo item
 var newItem = function() {
+
   var table = document.getElementById('todoList');
   var txtBox =  document.getElementById('todoEntryName');
   var value = txtBox.value;
@@ -23,8 +24,8 @@ var newItem = function() {
   var checkbox = document.createElement("INPUT");
   checkbox.setAttribute("id", "checkbox_".concat(items.toString()));
   checkbox.setAttribute("type", "checkbox");
-  // checkbox.setAttribute("checked","not checked")
   checkbox.class = "checkbox";
+  checkbox.onclick = function() {strikeOutEntry(checkbox.id)}
   var checkBoxCell = newEntry.insertCell(0);
   checkBoxCell.class = "checkboxCell";
   var inputField = document.createElement("div");
@@ -33,17 +34,9 @@ var newItem = function() {
   checkBoxCell.appendChild(inputField);
   var label = document.createElement("LABEL");
   label.setAttribute("for",checkbox.id);
+  label.id = checkbox.id.concat("_label");
   inputField.appendChild(label);
-
-// create todo name cell and add to row
-  // newEntry.id = "entry_".concat(items.toString());
-  // var entryNameCell = newEntry.insertCell(1);
-  // entryNameCell.innerHTML = value;
-  // var label = document.createElement("LABEL");
-  // label.setAttribute("for",checkbox.id);
-  // label.innerHTML = "ehllo";
   label.innerHTML = value;
-
 
 // create deleteButton and cell and add to row
   var deleteButton = document.createElement("BUTTON")
@@ -57,6 +50,15 @@ var newItem = function() {
   deleteCell.appendChild(deleteButton);
 
   listControllerButtonsStates();
+
+  var tD = document.getElementById("tableDiv");
+  console.log(table.rows.length );
+  if (table.rows.length > 0){
+    tD.style.display = "block";
+  } else {
+    tD.style.display = "none";
+  }
+
   items += 1
 }
 
@@ -73,7 +75,7 @@ var submitButtonState = function() {
   var txtBox =  document.getElementById('todoEntryName');
   var value = txtBox.value;
   if (value == "") {
-    document.getElementById('submitItemButton').disabled = true;
+    document.getElementById('submitItemButton').add("disabled") = true;
   } else {
     document.getElementById('submitItemButton').disabled = false;
   }
@@ -88,6 +90,16 @@ var listControllerButtonsStates = function() {
   } else {
     document.getElementById('deleteAllButton').disabled = true;
     document.getElementById('checkAllButton').disabled = true;
+  }
+}
+
+var strikeOutEntry = function(id) {
+  var item = document.getElementById(id);
+  if (item.checked)
+  {
+    document.getElementById(id.concat("_label")).style.textDecoration = "line-through";
+  } else {
+    document.getElementById(id.concat("_label")).style.textDecoration = "none";
   }
 }
 
