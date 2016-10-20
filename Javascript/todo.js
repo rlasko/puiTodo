@@ -1,6 +1,6 @@
 var items = 0;
 var showingEdit = false;
-var picker = 0;
+var pickerDict = {};
 
 // create new todo item
 var newItem = function() {
@@ -171,24 +171,19 @@ var hideEditMenu = function() {
 
 // open date picker and start process
 var setDate = function(id) {
-  picker = $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears:4,
-    onClose: function() {
-      closedDate(id);
-    }});
+  var picker = $('.datepicker').pickadate({
+      selectMonths: true,
+      selectYears:4,
+      onClose: function() {
+        closedDate(id, this.get());
+      }});
+  pickerDict.id = picker;
 }
 
 // Set values when picker closed
-var closedDate = function(id) {
-  var data = "";
-  if (picker) {
-    var date = $(picker.get()).val();
-  }
-  console.log(date);
-  if (date != "")
+var closedDate = function(id, date) {
+  if (date != "" && date != undefined)
   {
     document.getElementById(id).innerHTML = date;
   }
-  picker = 0
 }
