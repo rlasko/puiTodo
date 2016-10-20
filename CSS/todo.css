@@ -20,8 +20,8 @@ form {
 
 .deleteButton {
   height: 22px;
-  padding: 0.1 0.4rem;
-  font-size: 8px;
+  padding-right: 0px;
+  font-size: 12px;
 }
 
 #edit {
@@ -116,4 +116,11 @@ input[type=text].valid, input[type=text]:focus.valid {
 
 #tableDiv {
   display: none;
+}
+
+.dateButton {
+  padding-left: 46px;
+  font-size: 10px;
+  color: gray;
+  text-transform: none;
 }

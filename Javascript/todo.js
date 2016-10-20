@@ -1,4 +1,6 @@
 var items = 0;
+var showingEdit = false;
+var picker = 0;
 
 // create new todo item
 var newItem = function() {
@@ -19,6 +21,7 @@ var newItem = function() {
   var tableLength = table.rows.length;
   var newEntry = table.insertRow(tableLength);
   newEntry.id = "entry_".concat(items.toString());
+  newEntry.setAttribute("class", "valign-wrapper");
 
 // create checkbox cell and add to row
   var checkbox = document.createElement("INPUT");
@@ -38,10 +41,25 @@ var newItem = function() {
   inputField.appendChild(label);
   label.innerHTML = value;
 
+  // add date text/button
+  var dateButton = document.createElement("BUTTON");
+  dateButton.setAttribute("class","dateButton btn-flat datepicker");
+  dateButton.id = checkbox.id.concat("_date");
+  dateButton.onclick = function () {
+    console.log("date clicked");
+    setDate(dateButton.id);
+  }
+  dateButton.innerHTML = "Add due date";
+  inputField.appendChild(dateButton);
+
 // create deleteButton and cell and add to row
   var deleteButton = document.createElement("BUTTON")
   deleteButton.innerHTML = "x";
-  deleteButton.style.display = "none";
+  if (showingEdit){
+    deleteButton.style.display = "block";
+  } else {
+    deleteButton.style.display = "none";
+  }
   deleteButton.setAttribute("class","deleteButton waves-effect waves-light btn-flat");
   deleteButton.id = items.toString();
 // code for deleting todo item
@@ -59,7 +77,7 @@ var newItem = function() {
     tD.style.display = "none";
   }
 
-  items += 1
+  items += 1 // increment counter for unique ids
 }
 
 // delete row
@@ -93,6 +111,7 @@ var listControllerButtonsStates = function() {
   }
 }
 
+// strike out labels for checkboxes when checkbox is clicked
 var strikeOutEntry = function(id) {
   var item = document.getElementById(id);
   if (item.checked)
@@ -124,22 +143,59 @@ var deleteAll = function() {
   listControllerButtonsStates(); // update state
 }
 
+// shows the buttons in the edit menu bar
 var showEditMenu = function() {
+  showingEdit = true;
   document.getElementById('footerButton').style.display = "none";
   document.getElementById('editMenu').style.display = "block";
 
   var deleteButtons = document.getElementsByClassName('deleteButton');
+  // show delete buttons
   for (var i = 0; i < deleteButtons.length; i ++) {
     deleteButtons[i].style.display = 'block';
   }
 }
 
+// hides the buttons in the edit menu bar
 var hideEditMenu = function() {
+  showingEdit = false;
   document.getElementById('footerButton').style.display = "block";
   document.getElementById('editMenu').style.display = "none";
 
   var deleteButtons = document.getElementsByClassName('deleteButton');
+  // hide delete buttons
   for (var i = 0; i < deleteButtons.length; i ++) {
     deleteButtons[i].style.display = 'none';
   }
+}
+
+var setDate = function(id) {
+  picker = $('.datepicker').pickadate({
+    selectMonths: true,
+    selectYears:4,
+    onClose: function() {
+      closedDate(id);
+    }});
+    //   $(id).datepicker({
+    //     dateFormat: "dd-mm-yy",
+    //     onSelect: function(){
+    //     var selected = $(this).val();
+    //     console.log(selected);
+    //     }
+    // });
+    // picker.onClose(function)
+
+}
+
+var closedDate = function(id) {
+  var data = "";
+  if (picker) {
+    var date = $(picker.get()).val();
+  }
+  console.log(date);
+  if (date != "")
+  {
+    document.getElementById(id).innerHTML = date;
+  }
+  picker = 0
 }
