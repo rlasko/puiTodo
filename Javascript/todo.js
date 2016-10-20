@@ -169,6 +169,7 @@ var hideEditMenu = function() {
   }
 }
 
+// open date picker and start process
 var setDate = function(id) {
   picker = $('.datepicker').pickadate({
     selectMonths: true,
@@ -176,17 +177,9 @@ var setDate = function(id) {
     onClose: function() {
       closedDate(id);
     }});
-    //   $(id).datepicker({
-    //     dateFormat: "dd-mm-yy",
-    //     onSelect: function(){
-    //     var selected = $(this).val();
-    //     console.log(selected);
-    //     }
-    // });
-    // picker.onClose(function)
-
 }
 
+// Set values when picker closed
 var closedDate = function(id) {
   var data = "";
   if (picker) {
