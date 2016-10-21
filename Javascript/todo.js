@@ -1,6 +1,7 @@
 var items = 0;
 var showingEdit = false;
-var pickerDict = {};
+var undoStack = [];
+var redoStack = [];
 
 // create new todo item
 var newItem = function() {
@@ -46,7 +47,6 @@ var newItem = function() {
   dateButton.setAttribute("class","dateButton btn-flat datepicker");
   dateButton.id = checkbox.id.concat("_date");
   dateButton.onclick = function () {
-    console.log("date clicked");
     setDate(dateButton.id);
   }
   dateButton.innerHTML = "Add due date";
@@ -70,7 +70,6 @@ var newItem = function() {
   listControllerButtonsStates();
 
   var tD = document.getElementById("tableDiv");
-  console.log(table.rows.length );
   if (table.rows.length > 0){
     tD.style.display = "block";
   } else {
@@ -82,6 +81,8 @@ var newItem = function() {
 
 // delete row
 var removeEntry = function(buttonNum) {
+  var tableClone = document.getElementById('todoList').cloneNode(true);
+  undoStack.push(tableClone);
   var rowId = "entry_".concat(buttonNum);
   var row = document.getElementById(rowId);
   row.parentNode.removeChild(row);
@@ -124,7 +125,6 @@ var strikeOutEntry = function(id) {
 
 // check all list items
 var checkAll = function() {
-  console.log("hello");
   var table = document.getElementById('todoList');
   var tableLength = table.rows.length;
   for (var i = 0; i < tableLength; i ++) {
@@ -135,6 +135,7 @@ var checkAll = function() {
 // delete all items
 var deleteAll = function() {
   var table = document.getElementById('todoList');
+  undoStack.push(table.cloneNode(true));
   var tableLength = table.rows.length;
   for (var i = 0; i < tableLength; i ++) {
     var row = table.rows[0];
@@ -185,5 +186,39 @@ var closedDate = function(id, date) {
   if (date != "" && date != undefined)
   {
     document.getElementById(id).innerHTML = date;
+  }
+}
+
+// undo last deletion
+var undo = function() {
+  redoStack = []; // clear redo stack
+  if (undoStack.length < 1) return;
+  var elem = undoStack.pop();
+  var oldTable = document.getElementById('todoList');
+  oldTable.parentNode.replaceChild(elem,oldTable);
+  resetDeleteButtonBinding();
+  if (showingEdit) showEditMenu();
+  redoStack.push(oldTable.cloneNode(true)); // do not alias!!
+}
+
+//redo last undo
+var redo = function() {
+  if (redoStack.length < 1) return;
+  var elem = redoStack.pop();
+  var oldTable = document.getElementById('todoList');
+  resetDeleteButtonBinding();
+  if (showingEdit) showEditMenu();
+  oldTable.parentNode.replaceChild(elem,oldTable);
+  undoStack.push(oldTable.cloneNode(true)); // do not alias!!
+}
+
+// binding for delete button gets removed with cloning
+var resetDeleteButtonBinding = function () {
+  var table = document.getElementById('todoList');
+  var tableLength = table.rows.length;
+  for (var i = 0; i < tableLength; i ++) {
+    var row = table.rows[0];
+    var deleteButton = row.cells[1].childNodes[0];
+    deleteButton.onclick = function () {removeEntry(parseInt(deleteButton.id))};
   }
 }

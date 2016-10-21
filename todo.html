@@ -19,12 +19,12 @@
         <h1 class="white-text">Start Working</h1>
       </div>
     </div>
-    <div class="row center-align footer" id="footerButton">
+    <div class="row center-align footer2" id="footerButton">
       <div class="col s4 offset-s8">
         <button id="edit" class="waves-effect waves-light btn-flat teal-text" onclick="showEditMenu()">Edit</button>
       </div>
     </div>
-    <div class="row center-align footer valign-wrapper" id="editMenu">
+    <div class="row center-align footer2 valign-wrapper" id="editMenu">
       <div class="col s12 l4 offset-l7 valign-wrapper">
         <div class="col s4">
           <button id="checkAllButton" onclick="checkAll()" class="editButton waves-effect waves-light btn" disabled>Check All</button>
@@ -63,10 +63,18 @@
         </div>
         </div>
       </div>
-
-
     </div>
+
   </div>
 </div>
+  <footer>
+    <div class="row">
+      <div class="col s5 offset-s7">
+        <button class="undoRedo" onclick="undo()">Undo</button>
+        <button class="undoRedo" onclick="redo()">Redo</button>
+      </div>
+    </div>
+  </footer>
   </body>
+
 </html>
